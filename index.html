@@ -629,7 +629,7 @@
       <svg class="gh-icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
       Star on GitHub
     </a>
-    <a id="docsLink" href="https://docs.anthropic.com/en/docs/build-with-claude/token-counting" target="_blank">API Docs ↗</a>
+    <a id="docsLink" href="docs.html" target="_blank">API Docs ↗</a>
   </div>
 </footer>
 
@@ -638,7 +638,6 @@
   const PROVIDERS = {
     anthropic: {
       name: 'Anthropic',
-      docs: 'https://docs.anthropic.com/en/docs/build-with-claude/token-counting',
       models: {
         'claude-haiku-4-5': { input: 1.00, output: 5.00, ctx: 200000, label: 'Haiku 4.5' },
         'claude-sonnet-4-6': { input: 3.00, output: 15.00, ctx: 200000, label: 'Sonnet 4.6' },
@@ -647,7 +646,6 @@
     },
     openai: {
       name: 'OpenAI',
-      docs: 'https://openai.com/api/pricing/',
       models: {
         'gpt-5.4':      { input: 2.50, output: 15.00, ctx: 512000, label: 'GPT-5.4' },
         'gpt-5.4-mini': { input: 0.75, output: 4.50,  ctx: 512000, label: 'GPT-5.4 mini' },
@@ -656,15 +654,34 @@
     },
     google: {
       name: 'Google Gemini',
-      docs: 'https://ai.google.dev/pricing',
       models: {
         'gemini-2.5-pro':   { input: 3.50, output: 10.50, ctx: 2000000, label: 'Gemini 2.5 Pro' },
         'gemini-2.5-flash': { input: 0.10, output: 0.40,  ctx: 1000000, label: 'Gemini 2.5 Flash' },
       }
     },
+    openrouter: {
+      name: 'OpenRouter',
+      models: {
+        'llama-4.1-405b': { input: 2.00, output: 10.00, ctx: 128000, label: 'Llama 4.1 405B' },
+        'qwen-3-72b':     { input: 0.80, output: 0.80,  ctx: 128000, label: 'Qwen 3.0 72B' },
+      }
+    },
+    bedrock: {
+      name: 'AWS Bedrock',
+      models: {
+        'claude-3-7-sonnet': { input: 3.00, output: 15.00, ctx: 200000, label: 'Claude 3.7 Sonnet' },
+        'llama-4-70b-br':    { input: 0.70, output: 0.70,  ctx: 128000, label: 'Llama 4.0 70B' },
+      }
+    },
+    vertex: {
+      name: 'Vertex AI',
+      models: {
+        'gemini-2-5-pro':   { input: 1.25, output: 5.00, ctx: 2000000, label: 'Gemini 2.5 Pro' },
+        'gemini-2-5-flash': { input: 0.10, output: 0.40, ctx: 1000000, label: 'Gemini 2.5 Flash' },
+      }
+    },
     perplexity: {
       name: 'Perplexity',
-      docs: 'https://docs.perplexity.ai/docs/pricing',
       models: {
         'sonar-pro':  { input: 3.00, output: 12.00, ctx: 128000, label: 'Sonar Pro' },
         'sonar-base': { input: 0.60, output: 1.80,  ctx: 128000, label: 'Sonar Base' },
@@ -672,16 +689,34 @@
     },
     groq: {
       name: 'Groq',
-      docs: 'https://groq.com/pricing/',
       models: {
         'llama-4-405b': { input: 2.00, output: 2.00, ctx: 128000, label: 'Llama 4 405B' },
         'llama-4-70b':  { input: 0.70, output: 0.70, ctx: 128000, label: 'Llama 4 70B' },
-        'llama-4-8b':   { input: 0.05, output: 0.05, ctx: 128000, label: 'Llama 4 8B' },
+      }
+    },
+    fireworks: {
+      name: 'Fireworks AI',
+      models: {
+        'llama-4-70b-fw': { input: 0.50, output: 1.00, ctx: 128000, label: 'Llama 4.0 70B' },
+        'qwen-2-5-fw':    { input: 0.20, output: 0.20, ctx: 128000, label: 'Qwen 2.5' },
+      }
+    },
+    cerebras: {
+      name: 'Cerebras',
+      models: {
+        'llama-3-1-70b-fast': { input: 0.60, output: 0.60, ctx: 128000, label: 'Llama 3.1 70B' },
+        'llama-3-1-8b-fast':  { input: 0.10, output: 0.10, ctx: 128000, label: 'Llama 3.1 8B' },
+      }
+    },
+    together: {
+      name: 'Together AI',
+      models: {
+        'dolphin-3-0': { input: 0.80, output: 0.80, ctx: 128000, label: 'Dolphin 3.0' },
+        'qwen-3-72b-tg': { input: 0.80, output: 0.80, ctx: 128000, label: 'Qwen 3.0 72B' },
       }
     },
     mistral: {
       name: 'Mistral',
-      docs: 'https://mistral.ai/technology/#pricing',
       models: {
         'mistral-large-3': { input: 2.00, output: 6.00, ctx: 128000, label: 'Mistral Large 3' },
         'mistral-small-3': { input: 0.20, output: 0.60, ctx: 128000, label: 'Mistral Small 3' },
@@ -689,17 +724,13 @@
     },
     xai: {
       name: 'xAI (Grok)',
-      docs: 'https://x.ai/api',
       models: {
         'grok-4.20':     { input: 2.00, output: 6.00,  ctx: 2048000, label: 'Grok 4.20' },
         'grok-4':        { input: 3.00, output: 15.00, ctx: 2048000, label: 'Grok 4' },
-        'grok-4.1-fast': { input: 0.20, output: 0.50,  ctx: 1024000, label: 'Grok 4.1 Fast' },
-        'grok-3-mini':   { input: 0.30, output: 0.50,  ctx: 128000,  label: 'Grok 3 Mini' },
       }
     },
     deepseek: {
       name: 'DeepSeek',
-      docs: 'https://api-docs.deepseek.com/pricing',
       models: {
         'deepseek-reasoner': { input: 0.28, output: 0.42, ctx: 128000, label: 'DeepSeek Reasoning' },
         'deepseek-chat':     { input: 0.14, output: 0.28, ctx: 128000, label: 'DeepSeek Chat' },
@@ -707,27 +738,50 @@
     },
     cohere: {
       name: 'Cohere',
-      docs: 'https://cohere.com/pricing',
       models: {
         'command-r7': { input: 1.00, output: 4.00, ctx: 128000, label: 'Command R7' },
         'command-r':  { input: 0.50, output: 1.50, ctx: 128000, label: 'Command R' },
       }
     },
+    dashscope: {
+      name: 'Alibaba DashScope',
+      models: {
+        'qwen-max-3':  { input: 1.20, output: 4.00, ctx: 128000, label: 'Qwen Max 3' },
+        'qwen-plus-3': { input: 0.20, output: 0.60, ctx: 128000, label: 'Qwen Plus 3' },
+      }
+    },
+    reka: {
+      name: 'Reka AI',
+      models: {
+        'reka-core':  { input: 3.00, output: 15.00, ctx: 128000, label: 'Reka Core' },
+        'reka-flash': { input: 0.30, output: 0.90,  ctx: 128000, label: 'Reka Flash' },
+      }
+    },
+    upstage: {
+      name: 'Upstage',
+      models: {
+        'solar-pro-v2': { input: 1.00, output: 4.00, ctx: 128000, label: 'Solar Pro v2' },
+      }
+    },
+    lambda: {
+      name: 'Lambda Labs',
+      models: {
+        'hermes-3-70b': { input: 0.50, output: 0.50, ctx: 128000, label: 'Hermes 3 70B' },
+        'llama-4-70b-ll': { input: 0.50, output: 0.50, ctx: 128000, label: 'Llama 4.0 70B' },
+      }
+    },
+    nvidia: {
+      name: 'NVIDIA',
+      models: {
+        'nemotron-4-340b': { input: 1.20, output: 4.80, ctx: 128000, label: 'Nemotron 4 340B' },
+        'nvlm-1.0':        { input: 0.90, output: 0.90, ctx: 128000, label: 'NVLM 1.0' },
+      }
+    },
     meta: {
       name: 'Meta (Llama)',
-      docs: 'https://ai.meta.com/llama/',
       models: {
         'llama-4-405b': { input: 2.00, output: 2.00, ctx: 128000, label: 'Llama 4 405B' },
         'llama-4-70b':  { input: 0.70, output: 0.70, ctx: 128000, label: 'Llama 4 70B' },
-        'llama-4-8b':   { input: 0.05, output: 0.05, ctx: 128000, label: 'Llama 4 8B' },
-      }
-    },
-    together: {
-      name: 'Together AI',
-      docs: 'https://www.together.ai/pricing',
-      models: {
-        'llama-3.3-70b': { input: 0.90, output: 0.90, ctx: 128000, label: 'Llama 3.3 70B' },
-        'qwen-2.5-72b':  { input: 0.80, output: 0.80, ctx: 128000, label: 'Qwen 2.5 72B' },
       }
     }
   };
@@ -745,14 +799,6 @@
       opt.textContent = `${m.label} — $${m.input}/$${m.output}`;
       modelSelect.appendChild(opt);
     }
-
-    updateDocsLink();
-  }
-
-  function updateDocsLink() {
-    const providerKey = document.getElementById('provider').value;
-    const link = document.getElementById('docsLink');
-    link.href = PROVIDERS[providerKey].docs;
   }
 
   // initialize
