@@ -22,7 +22,7 @@ Live at: **[tokenvalidator.nsisong.com](https://tokenvalidator.nsisong.com)**
 ## How it Works
 
 1. **Select Provider**: Choose from the dropdown (Anthropic, OpenAI, DeepSeek, will keep adding.).
-2. **Enter Prompt**: Fill in your system and user messages.
+2. **Enter Prompt**: Fill in your combined instructions and task (see details below).
 3. **Validate**: Hit "Validate Prompt". The tool calculates tokens locally and provides a full cost breakdown immediately.
 
 ## Things to note:
