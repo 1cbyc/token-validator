@@ -477,13 +477,17 @@
       </select>
     </div>
 
+    <!-- API Key (Hidden as per user request to simplify) -->
+    <!--
     <div class="field">
-      <label id="keyLabel">Anthropic API Key</label>
+      <label id="keyLabel">API Key</label>
       <div class="key-wrap">
-        <input type="password" id="apiKey" placeholder="sk-ant-api03-..." autocomplete="off">
+        <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off">
         <button class="key-toggle" onclick="toggleKey()">show</button>
       </div>
     </div>
+    -->
+    <input type="hidden" id="apiKey" value="">
 
     <div class="field-row">
       <div class="field">
@@ -623,7 +627,6 @@
   const PROVIDERS = {
     anthropic: {
       name: 'Anthropic',
-      keyPlaceholder: 'sk-ant-api03-...',
       docs: 'https://docs.anthropic.com/en/docs/build-with-claude/token-counting',
       models: {
         'claude-haiku-4-5': { input: 1.00, output: 5.00, ctx: 200000, label: 'Haiku 4.5' },
@@ -633,7 +636,6 @@
     },
     openai: {
       name: 'OpenAI',
-      keyPlaceholder: 'sk-proj-...',
       docs: 'https://openai.com/api/pricing/',
       models: {
         'gpt-5.4':      { input: 2.50, output: 15.00, ctx: 512000, label: 'GPT-5.4' },
@@ -643,7 +645,6 @@
     },
     google: {
       name: 'Google Gemini',
-      keyPlaceholder: 'AIzaSy...',
       docs: 'https://ai.google.dev/pricing',
       models: {
         'gemini-2.5-pro':   { input: 3.50, output: 10.50, ctx: 2000000, label: 'Gemini 2.5 Pro' },
@@ -652,7 +653,6 @@
     },
     perplexity: {
       name: 'Perplexity',
-      keyPlaceholder: 'pplx-...',
       docs: 'https://docs.perplexity.ai/docs/pricing',
       models: {
         'sonar-pro':  { input: 3.00, output: 12.00, ctx: 128000, label: 'Sonar Pro' },
@@ -661,7 +661,6 @@
     },
     groq: {
       name: 'Groq',
-      keyPlaceholder: 'gsk_...',
       docs: 'https://groq.com/pricing/',
       models: {
         'llama-4-405b': { input: 2.00, output: 2.00, ctx: 128000, label: 'Llama 4 405B' },
@@ -671,7 +670,6 @@
     },
     mistral: {
       name: 'Mistral',
-      keyPlaceholder: 'mistral-api-key',
       docs: 'https://mistral.ai/technology/#pricing',
       models: {
         'mistral-large-3': { input: 2.00, output: 6.00, ctx: 128000, label: 'Mistral Large 3' },
@@ -680,7 +678,6 @@
     },
     xai: {
       name: 'xAI (Grok)',
-      keyPlaceholder: 'xai-...',
       docs: 'https://x.ai/api',
       models: {
         'grok-4.20':     { input: 2.00, output: 6.00,  ctx: 2048000, label: 'Grok 4.20' },
@@ -691,7 +688,6 @@
     },
     deepseek: {
       name: 'DeepSeek',
-      keyPlaceholder: 'ds-...',
       docs: 'https://api-docs.deepseek.com/pricing',
       models: {
         'deepseek-reasoner': { input: 0.28, output: 0.42, ctx: 128000, label: 'DeepSeek Reasoning' },
@@ -700,7 +696,6 @@
     },
     cohere: {
       name: 'Cohere',
-      keyPlaceholder: 'cohere-api-key',
       docs: 'https://cohere.com/pricing',
       models: {
         'command-r7': { input: 1.00, output: 4.00, ctx: 128000, label: 'Command R7' },
@@ -709,7 +704,6 @@
     },
     meta: {
       name: 'Meta (Llama)',
-      keyPlaceholder: 'Llama 4 is usually via Groq/Together',
       docs: 'https://ai.meta.com/llama/',
       models: {
         'llama-4-405b': { input: 2.00, output: 2.00, ctx: 128000, label: 'Llama 4 405B' },
@@ -719,7 +713,6 @@
     },
     together: {
       name: 'Together AI',
-      keyPlaceholder: 'together-api-key',
       docs: 'https://www.together.ai/pricing',
       models: {
         'llama-3.3-70b': { input: 0.90, output: 0.90, ctx: 128000, label: 'Llama 3.3 70B' },
@@ -732,12 +725,6 @@
     const providerKey = document.getElementById('provider').value;
     const provider = PROVIDERS[providerKey];
     const modelSelect = document.getElementById('model');
-    const keyLabel = document.getElementById('keyLabel');
-    const keyInput = document.getElementById('apiKey');
-
-    // update labels
-    keyLabel.textContent = provider.name + ' API Key';
-    keyInput.placeholder = provider.keyPlaceholder;
 
     // update dropdown
     modelSelect.innerHTML = '';
@@ -760,17 +747,8 @@
   // initialize
   updateModels();
 
-  function toggleKey() {
-    const inp = document.getElementById('apiKey');
-    const btn = document.querySelector('.key-toggle');
-    if (inp.type === 'password') {
-      inp.type = 'text';
-      btn.textContent = 'hide';
-    } else {
-      inp.type = 'password';
-      btn.textContent = 'show';
-    }
-  }
+  // updateDocsLink initialized by updateModels on load
+
 
   function fmt(n, decimals = 6) {
     if (n < 0.000001) return '$0.000000';
@@ -808,10 +786,7 @@
     const maxToks     = parseInt(document.getElementById('maxTokens').value) || 1000;
 
     // validation
-    const localProviders = ['openai', 'perplexity', 'groq', 'mistral', 'xai', 'deepseek', 'cohere', 'meta', 'together'];
-    if (!localProviders.includes(providerKey)) {
-      if (!apiKey) return showError('API key required for ' + PROVIDERS[providerKey].name);
-    }
+    // API key check removed as per user request
     if (!user) return showError('User message cannot be empty.');
 
     const btn = document.getElementById('validateBtn');
@@ -825,39 +800,14 @@
     try {
       let inputTokens = 0;
 
-      if (providerKey === 'anthropic') {
-        const body = { model: modelId, messages: [{ role: 'user', content: user }] };
-        if (system) body.system = system;
-        const res = await fetch('https://api.anthropic.com/v1/messages/count_tokens', {
-          method: 'POST',
-          headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data?.error?.message || `API error ${res.status}`);
-        inputTokens = data.input_tokens;
-
-      } else if (providerKey === 'google') {
-        const body = { contents: [{ parts: [{ text: (system ? system + "\n\n" : "") + user }] }] };
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelId}:countTokens?key=${apiKey}`, {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data?.error?.message || `API error ${res.status}`);
-        inputTokens = data.totalTokens;
-
-      } else {
-        // Local tokenization (OpenAI, Perplexity, etc.)
-        const tokenizer = window.GPTTokenizer || window.GPTTokenizer_cl100k_base;
-        if (!tokenizer) {
-          throw new Error('Tokenization library not loaded. Please check your internet connection.');
-        }
-        const fullText = (system ? system + "\n\n" : "") + user;
-        const tokens = tokenizer.encode(fullText);
-        inputTokens = tokens.length;
+      // All providers now use local tokenization for a key-free experience
+      const tokenizer = window.GPTTokenizer || window.GPTTokenizer_cl100k_base;
+      if (!tokenizer) {
+        throw new Error('Tokenization library not loaded. Please check your internet connection.');
       }
+      const fullText = (system ? system + "\n\n" : "") + user;
+      const tokens = tokenizer.encode(fullText);
+      inputTokens = tokens.length;
 
       renderResults(inputTokens, maxToks, providerKey, modelId);
 
