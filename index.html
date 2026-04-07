@@ -466,9 +466,14 @@
         <option value="anthropic" selected>Anthropic</option>
         <option value="openai">OpenAI</option>
         <option value="google">Google Gemini</option>
+        <option value="xai">xAI (Grok)</option>
+        <option value="deepseek">DeepSeek</option>
+        <option value="cohere">Cohere</option>
         <option value="perplexity">Perplexity</option>
         <option value="groq">Groq</option>
         <option value="mistral">Mistral</option>
+        <option value="meta">Meta (Llama)</option>
+        <option value="together">Together AI</option>
       </select>
     </div>
 
@@ -672,6 +677,54 @@
         'mistral-large-3': { input: 2.00, output: 6.00, ctx: 128000, label: 'Mistral Large 3' },
         'mistral-small-3': { input: 0.20, output: 0.60, ctx: 128000, label: 'Mistral Small 3' },
       }
+    },
+    xai: {
+      name: 'xAI (Grok)',
+      keyPlaceholder: 'xai-...',
+      docs: 'https://x.ai/api',
+      models: {
+        'grok-4.20':     { input: 2.00, output: 6.00,  ctx: 2048000, label: 'Grok 4.20' },
+        'grok-4':        { input: 3.00, output: 15.00, ctx: 2048000, label: 'Grok 4' },
+        'grok-4.1-fast': { input: 0.20, output: 0.50,  ctx: 1024000, label: 'Grok 4.1 Fast' },
+        'grok-3-mini':   { input: 0.30, output: 0.50,  ctx: 128000,  label: 'Grok 3 Mini' },
+      }
+    },
+    deepseek: {
+      name: 'DeepSeek',
+      keyPlaceholder: 'ds-...',
+      docs: 'https://api-docs.deepseek.com/pricing',
+      models: {
+        'deepseek-reasoner': { input: 0.28, output: 0.42, ctx: 128000, label: 'DeepSeek Reasoning' },
+        'deepseek-chat':     { input: 0.14, output: 0.28, ctx: 128000, label: 'DeepSeek Chat' },
+      }
+    },
+    cohere: {
+      name: 'Cohere',
+      keyPlaceholder: 'cohere-api-key',
+      docs: 'https://cohere.com/pricing',
+      models: {
+        'command-r7': { input: 1.00, output: 4.00, ctx: 128000, label: 'Command R7' },
+        'command-r':  { input: 0.50, output: 1.50, ctx: 128000, label: 'Command R' },
+      }
+    },
+    meta: {
+      name: 'Meta (Llama)',
+      keyPlaceholder: 'Llama 4 is usually via Groq/Together',
+      docs: 'https://ai.meta.com/llama/',
+      models: {
+        'llama-4-405b': { input: 2.00, output: 2.00, ctx: 128000, label: 'Llama 4 405B' },
+        'llama-4-70b':  { input: 0.70, output: 0.70, ctx: 128000, label: 'Llama 4 70B' },
+        'llama-4-8b':   { input: 0.05, output: 0.05, ctx: 128000, label: 'Llama 4 8B' },
+      }
+    },
+    together: {
+      name: 'Together AI',
+      keyPlaceholder: 'together-api-key',
+      docs: 'https://www.together.ai/pricing',
+      models: {
+        'llama-3.3-70b': { input: 0.90, output: 0.90, ctx: 128000, label: 'Llama 3.3 70B' },
+        'qwen-2.5-72b':  { input: 0.80, output: 0.80, ctx: 128000, label: 'Qwen 2.5 72B' },
+      }
     }
   };
 
@@ -755,7 +808,8 @@
     const maxToks     = parseInt(document.getElementById('maxTokens').value) || 1000;
 
     // validation
-    if (providerKey !== 'openai' && providerKey !== 'perplexity' && providerKey !== 'groq' && providerKey !== 'mistral') {
+    const localProviders = ['openai', 'perplexity', 'groq', 'mistral', 'xai', 'deepseek', 'cohere', 'meta', 'together'];
+    if (!localProviders.includes(providerKey)) {
       if (!apiKey) return showError('API key required for ' + PROVIDERS[providerKey].name);
     }
     if (!user) return showError('User message cannot be empty.');
