@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing & Model Docs — Token Validator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050505;
+      --surface: #0a0a0a;
+      --surface2: #111111;
+      --border: #1a1a1a;
+      --accent: #d4ff00;
+      --text: #ffffff;
+      --text-mid: #a0a0a0;
+      --text-dim: #606060;
+      --sans: 'Inter', ui-sans-serif, system-ui;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-link {
+      color: var(--text-mid);
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    p.subtitle { color: var(--text-mid); font-size: 15px; margin-bottom: 24px; }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    h2 { font-size: 18px; margin-bottom: 16px; color: var(--accent); }
+
+    .docs-info {
+      font-size: 14px;
+      color: var(--text-mid);
+      margin-bottom: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th {
+      text-align: left;
+      color: var(--text-dim);
+      font-weight: 500;
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-mid);
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .provider-name { color: var(--text); font-weight: 600; }
+    .pricing-link { color: var(--accent); text-decoration: none; }
+    .pricing-link:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      background: var(--surface2);
+      border-radius: 4px;
+      font-size: 11px;
+      color: var(--accent);
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <a href="index.html" class="back-link">← Back to Validator</a>
+    <div style="font-size: 12px; color: var(--text-dim);">Last Updated: April 2026</div>
+  </header>
+
+  <h1>Model Library & Pricing Docs</h1>
+  <p class="subtitle">Reference guide for all supported LLM providers and their current rates.</p>
+
+  <section>
+    <h2>Methodology</h2>
+    <div class="docs-info">
+      <p>The Token Validator uses local-first client-side tokenization. For maximum speed and offline support, all costs are calculated using the <strong>cl100k_base</strong> tokenizer as a high-fidelity proxy. While most providers (OpenAI, Anthropic, DeepSeek, etc.) use this or very similar algorithms, these figures remain estimates for budget planning.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Supported Providers</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Primary Model Tiers</th>
+          <th>Pricing Page</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="provider-name">Anthropic</td>
+          <td>Claude 4.5, 3.7.5 Sonnet, 3.5 Haiku</td>
+          <td><a href="https://www.anthropic.com/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">OpenAI</td>
+          <td>GPT-5.4, GPT-4o, o1-preview</td>
+          <td><a href="https://openai.com/api/pricing/" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">DeepSeek</td>
+          <td>V4, Reasoner, Chat</td>
+          <td><a href="https://api-docs.deepseek.com/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">xAI (Grok)</td>
+          <td>Grok-4.20, Grok-3-mini</td>
+          <td><a href="https://x.ai/api" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Google Gemini</td>
+          <td>Gemini 2.5 Pro, 2.5 Flash</td>
+          <td><a href="https://ai.google.dev/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">OpenRouter <span class="badge">Aggregator</span></td>
+          <td>Meta, Qwen, Mistral, 01.AI</td>
+          <td><a href="https://openrouter.ai/docs#models" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">AWS Bedrock</td>
+          <td>Claude 3.x, Llama 4.0, Titan</td>
+          <td><a href="https://aws.amazon.com/bedrock/pricing/" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Vertex AI</td>
+          <td>Gemini 1.5, 2.0, 2.5</td>
+          <td><a href="https://cloud.google.com/vertex-ai/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Fireworks AI</td>
+          <td>Llama 4.0, Qwen 2.5 (Fast)</td>
+          <td><a href="https://fireworks.ai/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Together AI</td>
+          <td>Llama 3.1, Mixtral, Qwen</td>
+          <td><a href="https://www.together.ai/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Cerebras <span class="badge">Ultra-Fast</span></td>
+          <td>Llama 3.1 70B, 8B</td>
+          <td><a href="https://cerebras.ai/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Perplexity</td>
+          <td>Sonar Pro, Sonar Base</td>
+          <td><a href="https://docs.perplexity.ai/docs/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Groq</td>
+          <td>Llama 3.3, Mixtral 8x7b</td>
+          <td><a href="https://groq.com/pricing/" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Mistral</td>
+          <td>Mistral Large 2, Pixtral</td>
+          <td><a href="https://mistral.ai/technology/#pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Cohere</td>
+          <td>Command R+, Command R7</td>
+          <td><a href="https://cohere.com/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Alibaba DashScope</td>
+          <td>Qwen-Max, Qwen-Plus-3</td>
+          <td><a href="https://www.alibabacloud.com/help/en/dashscope/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Reka AI</td>
+          <td>Reka Core, Reka Flash</td>
+          <td><a href="https://www.reka.ai/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Upstage</td>
+          <td>Solar-Pro-v2</td>
+          <td><a href="https://upstage.ai/pricing" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Lambda Labs</td>
+          <td>Hermes 3, Llama 3.x</td>
+          <td><a href="https://lambdalabs.com/service/gpu-cloud" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+        <tr>
+          <td class="provider-name">Meta (Llama)</td>
+          <td>Llama 4.0, 3.1</td>
+          <td><a href="https://llama.meta.com/" target="_blank" class="pricing-link">Official Pricing ↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    Token Validator © 2026 — Built by Nsisong Labs. Information is updated periodically.
+  </footer>
+</div>
+
+</body>
+</html>
