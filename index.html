@@ -850,11 +850,12 @@
 
       } else {
         // Local tokenization (OpenAI, Perplexity, etc.)
-        if (typeof GPTTokenizer === 'undefined') {
+        const tokenizer = window.GPTTokenizer || window.GPTTokenizer_cl100k_base;
+        if (!tokenizer) {
           throw new Error('Tokenization library not loaded. Please check your internet connection.');
         }
         const fullText = (system ? system + "\n\n" : "") + user;
-        const tokens = GPTTokenizer.encode(fullText);
+        const tokens = tokenizer.encode(fullText);
         inputTokens = tokens.length;
       }
 
