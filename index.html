@@ -146,11 +146,8 @@
   textarea {
     resize: vertical;
     line-height: 1.6;
-    min-height: 120px;
+    min-height: 380px;
   }
-
-  textarea#system { min-height: 160px; }
-  textarea#user { min-height: 100px; }
 
   select option { background: var(--surface2); }
 
@@ -503,13 +500,8 @@
     </div>
 
     <div class="field">
-      <label>System Prompt</label>
-      <textarea id="system" placeholder="You are a helpful assistant..."></textarea>
-    </div>
-
-    <div class="field">
-      <label>User Message</label>
-      <textarea id="user" placeholder="Enter the user message to validate..."></textarea>
+      <label>Prompt</label>
+      <textarea id="prompt" placeholder="Paste your system instructions and user message here..."></textarea>
     </div>
 
     <button class="btn-validate" id="validateBtn" onclick="validate()">
@@ -781,13 +773,12 @@
     const providerKey = document.getElementById('provider').value;
     const apiKey      = document.getElementById('apiKey').value.trim();
     const modelId     = document.getElementById('model').value;
-    const system      = document.getElementById('system').value.trim();
-    const user        = document.getElementById('user').value.trim();
+    const prompt      = document.getElementById('prompt').value.trim();
     const maxToks     = parseInt(document.getElementById('maxTokens').value) || 1000;
 
     // validation
     // API key check removed as per user request
-    if (!user) return showError('User message cannot be empty.');
+    if (!prompt) return showError('Prompt cannot be empty.');
 
     const btn = document.getElementById('validateBtn');
     btn.disabled = true;
@@ -805,8 +796,7 @@
       if (!tokenizer) {
         throw new Error('Tokenization library not loaded. Please check your internet connection.');
       }
-      const fullText = (system ? system + "\n\n" : "") + user;
-      const tokens = tokenizer.encode(fullText);
+      const tokens = tokenizer.encode(prompt);
       inputTokens = tokens.length;
 
       renderResults(inputTokens, maxToks, providerKey, modelId);
