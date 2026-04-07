@@ -1,16 +1,17 @@
-# Token Validator ⬡
 
-A premium, high-performance LLM token counter and cost estimator supporting **11+ major providers**. Built for developers who need precise pricing and context window validation **without the hassle of API keys**.
+
+# token-validator
+
+i just want to paste my prompt and user message into a tool, call the any LLM provider's token counting API *before* sending the real request, and see an exact token count, cost breakdown, context window usage, and scale projections. This prevents wasted API spend and runtime failures from oversized prompts.
+
+
+--
+
+you might be wondering why i used index.html file instead, i did not want to complicate it, this is not the time for it please! life is tough already to go about making things harder.
+
+although i intend to do one that can directly connect to your projects tho.
 
 Live at: **[tokenvalidator.nsisong.com](https://tokenvalidator.nsisong.com)**
-
-## 🚀 Key Features
-
-- **Zero-Config Validation**: No API keys required. Calculate tokens and costs instantly for all 11 providers.
-- **Representative Examples**: Optimized for **coding assistance** and **complex reasoning** prompts.
-- **Client-Side Tokenization**: Uses `gpt-tokenizer` to calculate tokens locally—100% private and offline-capable.
-- **Real-Time Cost Estimation**: Instant calculation of input, output, and total per-call costs based on the latest 2026 pricing.
-- **Context Efficiency**: Visual bar-track showing how much of the model's context window your prompt consumes.
 
 ## 📸 Screenshots (Coding & Reasoning)
 
@@ -22,19 +23,9 @@ Live at: **[tokenvalidator.nsisong.com](https://tokenvalidator.nsisong.com)**
 ![DeepSeek Reasoning Analysis](screenshots/deepseek_no_key.png)
 <!-- slide -->
 ![xAI Grok 4.20 Distributed Systems Logic](screenshots/grok_no_key.png)
-````
 
-## 🛠 Tech Stack
+## How it Works
 
-- **Frontend**: Vanilla HTML5, CSS3 (Glassmorphism & Flexbox), Modern JavaScript (ES6+).
-- **Tokenization**: `gpt-tokenizer` (via CDN). Works locally for all models.
-- **Deployment**: Automatic CI/CD from GitHub to **Cloudflare Pages**.
-
-## 📖 How it Works
-
-1. **Select Provider**: Choose from the dropdown (Anthropic, OpenAI, DeepSeek, etc.).
+1. **Select Provider**: Choose from the dropdown (Anthropic, OpenAI, DeepSeek, will keep adding.).
 2. **Enter Prompt**: Fill in your system and user messages.
 3. **Validate**: Hit "Validate Prompt". The tool calculates tokens locally and provides a full cost breakdown immediately.
-
----
-Built by **Nsisong Labs**
