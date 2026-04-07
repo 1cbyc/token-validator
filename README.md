@@ -8,17 +8,6 @@ although i intend to do one that can directly connect to your projects tho.
 
 Live at: **[tokenvalidator.nsisong.com](https://tokenvalidator.nsisong.com)**
 
-## 📸 Screenshots (Coding & Reasoning)
-
-````carousel
-![Anthropic Haiku 4.5 Coding Validation](screenshots/anthropic_no_key.png)
-<!-- slide -->
-![OpenAI GPT-5.4 logic Performance](screenshots/openai_no_key.png)
-<!-- slide -->
-![DeepSeek Reasoning Analysis](screenshots/deepseek_no_key.png)
-<!-- slide -->
-![xAI Grok 4.20 Distributed Systems Logic](screenshots/grok_no_key.png)
-
 ## How it Works
 
 1. **Select Provider**: Choose from the dropdown (Anthropic, OpenAI, DeepSeek, will keep adding.).
