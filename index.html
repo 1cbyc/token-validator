@@ -457,7 +457,6 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     padding: 2px;
-    margin-bottom: 20px;
   }
 
   .mode-btn {
@@ -767,30 +766,18 @@
           <option value="openai">OpenAI</option>
           <option value="google">Google Gemini</option>
           <option value="deepseek">DeepSeek</option>
-          <option value="openrouter">OpenRouter</option>
-          <option value="bedrock">AWS Bedrock</option>
-          <option value="vertex">Vertex AI</option>
-          <option value="fireworks">Fireworks AI</option>
-          <option value="cerebras">Cerebras</option>
-          <option value="together">Together AI</option>
           <option value="mistral">Mistral</option>
           <option value="xai">xAI (Grok)</option>
-          <option value="cohere">Cohere</option>
-          <option value="perplexity">Perplexity</option>
-          <option value="dashscope">Alibaba DashScope</option>
-          <option value="reka">Reka AI</option>
-          <option value="upstage">Upstage</option>
-          <option value="lambda">Lambda Labs</option>
-          <option value="nvidia">NVIDIA</option>
-          <option value="meta">Meta (Llama)</option>
           <option value="groq">Groq</option>
+          <option value="openrouter">OpenRouter</option>
+          <option value="perplexity">Perplexity</option>
         </select>
       </div>
 
       <div class="field-row">
         <div class="field">
           <label>Model</label>
-          <select id="model" onchange="updateDocsLink()">
+          <select id="model">
             <!-- populated dynamically -->
           </select>
         </div>
@@ -826,7 +813,7 @@
     <div class="field">
       <label>Image Inputs</label>
       <div class="image-row">
-        <input type="number" id="imageCount" value="0" min="0" max="20" title="Number of images included in this prompt">
+        <input type="number" id="imageCount" value="0" min="0" max="20" title="Number of images included in this prompt" oninput="updateImageResState()">
         <div class="res-toggle">
           <button class="res-btn active" id="resLow" onclick="setRes('low')">Low res</button>
           <button class="res-btn" id="resHigh" onclick="setRes('high')">High res</button>
@@ -834,9 +821,9 @@
       </div>
     </div>
 
-    <div class="cache-toggle-row" id="cacheToggleRow">
-      <input type="checkbox" id="cacheToggle">
-      <label class="cache-toggle-label" for="cacheToggle">Recurring System Prompt &mdash; <strong>cache-eligible</strong> (up to 90% savings on repeated calls)</label>
+    <div class="cache-toggle-row" id="cacheToggleRow" onclick="document.getElementById('cacheToggle').click()" style="cursor:pointer;">
+      <input type="checkbox" id="cacheToggle" onclick="event.stopPropagation()">
+      <label class="cache-toggle-label" for="cacheToggle" onclick="event.stopPropagation()">Recurring System Prompt &mdash; <strong>cache-eligible</strong> (up to 90% savings on repeated calls)</label>
     </div>
 
     <div class="field">
@@ -1065,6 +1052,12 @@
     document.getElementById('resHigh').classList.toggle('active', res === 'high');
   }
 
+  function updateImageResState() {
+    const count = parseInt(document.getElementById('imageCount').value) || 0;
+    const toggle = document.getElementById('resLow').closest('.res-toggle');
+    if (toggle) toggle.style.opacity = count > 0 ? '1' : '0.35';
+  }
+
   function showCacheToggle() {
     const pKey = document.getElementById('provider').value;
     const row = document.getElementById('cacheToggleRow');
@@ -1249,7 +1242,8 @@
   }
 
   function findCheaperAlternative(inputTokens, maxTokens, currentP, currentM) {
-    const currentPrice = (inputTokens/1M * PROVIDERS[currentP].models[currentM].input) + (maxTokens/1M * PROVIDERS[currentP].models[currentM].output);
+    const M = 1000000;
+    const currentPrice = (inputTokens / M * PROVIDERS[currentP].models[currentM].input) + (maxTokens / M * PROVIDERS[currentP].models[currentM].output);
     const totalTokens = inputTokens + maxTokens;
     let bestAlt = null;
     let maxSavings = 0;
@@ -1258,13 +1252,13 @@
         for (const [mId, m] of Object.entries(p.models)) {
             if (pKey === currentP && mId === currentM) continue;
             if (m.ctx < totalTokens) continue;
-            
-            const altPrice = (inputTokens/1M * m.input) + (maxTokens/1M * m.output);
+
+            const altPrice = (inputTokens / M * m.input) + (maxTokens / M * m.output);
             if (altPrice < currentPrice) {
                 const savings = (currentPrice - altPrice) / currentPrice;
-                if (savings > maxSavings && savings > 0.3) { // Only suggest if > 30% savings
+                if (savings > maxSavings && savings > 0.3) {
                     maxSavings = savings;
-                    bestAlt = { provider: pKey, model: mId, savings: (savings*100).toFixed(0), label: m.label };
+                    bestAlt = { provider: pKey, model: mId, savings: (savings * 100).toFixed(0), label: m.label };
                 }
             }
         }
@@ -1369,7 +1363,17 @@
 
     const effPct = Math.min(100, (total / p.ctx) * 100);
     document.getElementById('eff-pct').textContent = effPct.toFixed(1) + '%';
-    document.getElementById('eff-bar').style.width = effPct + '%';
+    const barEl = document.getElementById('eff-bar');
+    barEl.style.width = effPct + '%';
+    barEl.style.background = effPct > 85 ? 'var(--red)' : effPct > 60 ? 'var(--orange)' : effPct > 20 ? 'var(--accent)' : 'var(--green)';
+
+    const effNoteEl = document.getElementById('eff-note');
+    if (effNoteEl) {
+      if (effPct > 85) effNoteEl.textContent = 'Context almost full — consider trimming your prompt or raising max tokens carefully.';
+      else if (effPct > 60) effNoteEl.textContent = 'Context is moderately loaded. You have room but it is getting tight.';
+      else if (effPct > 20) effNoteEl.textContent = 'Good balance — solid headroom for longer outputs.';
+      else effNoteEl.textContent = 'Plenty of context remaining. This prompt is well within limits.';
+    }
 
     const warnEl = document.getElementById('warningBox');
     if (total > p.ctx) {
@@ -1422,6 +1426,7 @@
   updateModels();
   initDuelSelectors();
   showCacheToggle();
+  updateImageResState();
 
 
   document.addEventListener('keydown', (e) => {
