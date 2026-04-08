@@ -730,6 +730,129 @@
     margin-top: 8px;
     line-height: 1.5;
   }
+
+  /* ─────────────────────────────────────────────────────────────
+     RESPONSIVE — placed last so every rule here wins cleanly
+     over the base styles above without needing !important.
+  ───────────────────────────────────────────────────────────── */
+
+  /* ── Tablet to desktop narrow (≤ 1100px) ──────────────────── */
+  @media (max-width: 1100px) {
+    /* narrow the fixed right column slightly */
+    main { grid-template-columns: 1fr 320px; }
+
+    /* duel mode: stack input + results panels */
+    .duel-mode-active main    { grid-template-columns: 1fr; }
+    /* 2-column card grid at this width */
+    .duel-mode-active #results { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── Single-column breakpoint (≤ 860px) ───────────────────── */
+  @media (max-width: 860px) {
+    main { grid-template-columns: 1fr; }
+    .panel-left { border-right: none; border-bottom: 1px solid var(--border); }
+    .duel-mode-active #results { grid-template-columns: 1fr; }
+  }
+
+  /* ── Mobile / phone (≤ 768px) ─────────────────────────────── */
+  @media (max-width: 768px) {
+    /* layout already set by 860px block */
+    .field-row { grid-template-columns: 1fr; }
+
+    /* header */
+    header { padding: 14px 16px; gap: 10px; }
+    header h1 { font-size: 13px; }
+
+    /* panels */
+    .panel-left  { padding: 20px 16px; }
+    .panel-right { padding: 20px 16px 40px; }
+
+    /* prevent iOS auto-zoom: inputs focused below 16px font-size
+       cause the browser to zoom the viewport in  */
+    input, textarea, select { font-size: 16px; }
+
+    /* textarea — 380px is way too tall on a phone screen */
+    textarea { min-height: 200px; }
+
+    /* mode toggle — larger tap target */
+    .mode-btn { padding: 10px 8px; font-size: 12px; }
+
+    /* res toggle — larger tap target */
+    .res-btn { padding: 8px 12px; }
+
+    /* image row — allow wrapping on very narrow screens */
+    .image-row { flex-wrap: wrap; }
+    .image-row input[type="number"] { flex: 1 1 auto; width: auto; min-width: 60px; }
+
+    /* suggestion box — stack icon/content/button vertically */
+    .suggestion-box.visible {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .suggestion-icon  { display: none; }
+    .suggestion-action { align-self: flex-start; padding: 8px 14px; }
+
+    /* scale estimator cells */
+    .scale-cell { padding: 8px 6px; }
+    .scale-cell .calls { font-size: 9px; }
+    .scale-cell .cost  { font-size: 12px; }
+
+    /* stat rows */
+    .stat-label { font-size: 10px; max-width: 58%; }
+    .stat-val   { font-size: 12px; }
+
+    /* cost block total row */
+    .cost-row.total .val { font-size: 14px; }
+
+    /* efficiency widget */
+    .eff-pct { font-size: 18px; }
+
+    /* cache toggle */
+    .cache-toggle-row  { padding: 12px; }
+    .cache-toggle-label { font-size: 11px; }
+
+    /* duel comparison cards */
+    .comp-card { padding: 12px; gap: 12px; }
+    .comp-card .model-name { font-size: 13px; }
+
+    /* footer */
+    footer {
+      padding: 12px 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      text-align: center;
+    }
+    .footer-links { gap: 14px; }
+  }
+
+  /* ── Small phone (≤ 480px) ─────────────────────────────────── */
+  @media (max-width: 480px) {
+    header h1 { font-size: 12px; }
+    /* hide badge to give title full breathing room */
+    .badge { display: none; }
+
+    .panel-left  { padding: 16px 14px; }
+    .panel-right { padding: 16px 14px 32px; }
+
+    /* scale grid: 3 tight cols → single-row layout */
+    .scale-grid { grid-template-columns: 1fr; gap: 1px; }
+    .scale-cell {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .scale-cell .calls { margin-bottom: 0; }
+    .scale-cell .cost  { font-size: 13px; }
+
+    /* suggestion action full-width on small phones */
+    .suggestion-action { width: 100%; text-align: center; }
+
+    /* tighten rows */
+    .stat-row { padding: 9px 10px; }
+    .cost-row { padding: 9px 12px; }
+  }
 </style>
 </head>
 <body>
