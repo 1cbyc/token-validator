@@ -449,6 +449,288 @@
     .panel-left { border-right: none; border-bottom: 1px solid var(--border); }
     .field-row { grid-template-columns: 1fr; }
   }
+
+  /* Mode Toggle */
+  .mode-switch {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px;
+    margin-bottom: 20px;
+  }
+
+  .mode-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .mode-btn.active {
+    background: var(--surface2);
+    color: var(--accent);
+  }
+
+  /* Duel Selection */
+  .duel-select-grid {
+    display: none;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .duel-mode-active .single-select { display: none; }
+  .duel-mode-active .duel-select-grid { display: grid; }
+
+  .duel-slot {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .slot-label {
+    font-size: 10px;
+    color: var(--accent);
+    font-weight: 700;
+    font-family: var(--sans);
+  }
+
+  /* Results Grid */
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .duel-mode-active main {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .duel-mode-active #results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+
+  .duel-mode-active .panel-right {
+    max-width: none;
+  }
+
+  /* Comparison Card */
+  .comp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .comp-card .model-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
+    margin-bottom: 4px;
+  }
+
+  .comp-card .model-name {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .comp-card .provider-name {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* Suggestion Box */
+  .suggestion-box {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .suggestion-box.visible {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .suggestion-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .suggestion-content {
+    flex: 1;
+  }
+
+  .suggestion-title {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .suggestion-text {
+    font-size: 11px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  .suggestion-action {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 6px 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+  }
+
+  .suggestion-action:hover { opacity: 0.8; }
+
+  @media (max-width: 1100px) {
+    .duel-mode-active main { grid-template-columns: 1fr; }
+    .duel-mode-active #results { grid-template-columns: 1fr; }
+  }
+
+  /* image inputs */
+  .image-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .image-row input[type="number"] {
+    width: 72px;
+    flex-shrink: 0;
+  }
+  .res-toggle {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+  .res-btn {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+    letter-spacing: 0.03em;
+  }
+  .res-btn.active {
+    background: var(--surface2);
+    color: var(--text);
+  }
+
+  /* cache toggle */
+  .cache-toggle-row {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: 4px;
+  }
+  .cache-toggle-row.visible { display: flex; }
+  .cache-toggle-row input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .cache-toggle-label {
+    font-size: 11px;
+    color: var(--text-mid);
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.4;
+  }
+  .cache-toggle-label strong { color: var(--accent); font-weight: 600; }
+
+  /* tokenizer badge */
+  .tokenizer-badge {
+    font-size: 9px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2px 6px;
+    letter-spacing: 0.04em;
+    font-family: var(--mono);
+    white-space: nowrap;
+  }
+
+  /* cache savings */
+  #cacheSavings { display: none; }
+  #cacheSavings.visible { display: block; }
+  .cache-block {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .cache-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--accent-border);
+    font-size: 12px;
+  }
+  .cache-row:last-child { border-bottom: none; }
+  .cache-row .label { color: var(--text-mid); }
+  .cache-row .val { font-weight: 500; color: var(--text); }
+  .cache-row.highlight .val { color: var(--accent); }
+  .cache-note {
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    line-height: 1.5;
+  }
 </style>
 </head>
 <body>
@@ -470,56 +752,91 @@
   <!-- LEFT: inputs -->
   <div class="panel-left">
 
-    <div class="field">
-      <label id="providerLabel">Provider</label>
-      <select id="provider" onchange="updateModels()">
-        <option value="anthropic" selected>Anthropic</option>
-        <option value="openai">OpenAI</option>
-        <option value="google">Google Gemini</option>
-        <option value="deepseek">DeepSeek</option>
-        <option value="openrouter">OpenRouter</option>
-        <option value="bedrock">AWS Bedrock</option>
-        <option value="vertex">Vertex AI</option>
-        <option value="fireworks">Fireworks AI</option>
-        <option value="cerebras">Cerebras</option>
-        <option value="together">Together AI</option>
-        <option value="mistral">Mistral</option>
-        <option value="xai">xAI (Grok)</option>
-        <option value="cohere">Cohere</option>
-        <option value="perplexity">Perplexity</option>
-        <option value="dashscope">Alibaba DashScope</option>
-        <option value="reka">Reka AI</option>
-        <option value="upstage">Upstage</option>
-        <option value="lambda">Lambda Labs</option>
-        <option value="nvidia">NVIDIA</option>
-        <option value="meta">Meta (Llama)</option>
-        <option value="groq">Groq</option>
-      </select>
+    <!-- Mode Switch -->
+    <div class="mode-switch">
+      <button class="mode-btn active" id="singleModeBtn" onclick="setMode('single')">Single Model</button>
+      <button class="mode-btn" id="duelModeBtn" onclick="setMode('duel')">Model Duel</button>
     </div>
 
-    <!-- API Key (Hidden as per user request to simplify) -->
-    <!--
-    <div class="field">
-      <label id="keyLabel">API Key</label>
-      <div class="key-wrap">
-        <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off">
-        <button class="key-toggle" onclick="toggleKey()">show</button>
-      </div>
-    </div>
-    -->
-    <input type="hidden" id="apiKey" value="">
-
-    <div class="field-row">
+    <!-- Single Selection -->
+    <div class="single-select">
       <div class="field">
-        <label>Model</label>
-        <select id="model" onchange="updateDocsLink()">
-          <!-- populated dynamically -->
+        <label id="providerLabel">Provider</label>
+        <select id="provider" onchange="updateModels()">
+          <option value="anthropic" selected>Anthropic</option>
+          <option value="openai">OpenAI</option>
+          <option value="google">Google Gemini</option>
+          <option value="deepseek">DeepSeek</option>
+          <option value="openrouter">OpenRouter</option>
+          <option value="bedrock">AWS Bedrock</option>
+          <option value="vertex">Vertex AI</option>
+          <option value="fireworks">Fireworks AI</option>
+          <option value="cerebras">Cerebras</option>
+          <option value="together">Together AI</option>
+          <option value="mistral">Mistral</option>
+          <option value="xai">xAI (Grok)</option>
+          <option value="cohere">Cohere</option>
+          <option value="perplexity">Perplexity</option>
+          <option value="dashscope">Alibaba DashScope</option>
+          <option value="reka">Reka AI</option>
+          <option value="upstage">Upstage</option>
+          <option value="lambda">Lambda Labs</option>
+          <option value="nvidia">NVIDIA</option>
+          <option value="meta">Meta (Llama)</option>
+          <option value="groq">Groq</option>
         </select>
       </div>
-      <div class="field">
-        <label>Max Output Tokens</label>
-        <input type="number" id="maxTokens" value="1000" min="1" max="8096">
+
+      <div class="field-row">
+        <div class="field">
+          <label>Model</label>
+          <select id="model" onchange="updateDocsLink()">
+            <!-- populated dynamically -->
+          </select>
+        </div>
       </div>
+    </div>
+
+    <!-- Duel Selection -->
+    <div class="duel-select-grid" id="duelSelects">
+      <div class="duel-slot">
+        <div class="slot-label">MODEL A</div>
+        <select id="p1" onchange="updateDuelModels(1)"></select>
+        <select id="m1"></select>
+      </div>
+      <div class="duel-slot">
+        <div class="slot-label">MODEL B</div>
+        <select id="p2" onchange="updateDuelModels(2)"></select>
+        <select id="m2"></select>
+      </div>
+      <div class="duel-slot">
+        <div class="slot-label">MODEL C</div>
+        <select id="p3" onchange="updateDuelModels(3)"></select>
+        <select id="m3"></select>
+      </div>
+    </div>
+
+    <input type="hidden" id="apiKey" value="">
+
+    <div class="field">
+      <label>Max Output Tokens</label>
+      <input type="number" id="maxTokens" value="1000" min="1" max="8096">
+    </div>
+
+    <div class="field">
+      <label>Image Inputs</label>
+      <div class="image-row">
+        <input type="number" id="imageCount" value="0" min="0" max="20" title="Number of images included in this prompt">
+        <div class="res-toggle">
+          <button class="res-btn active" id="resLow" onclick="setRes('low')">Low res</button>
+          <button class="res-btn" id="resHigh" onclick="setRes('high')">High res</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cache-toggle-row" id="cacheToggleRow">
+      <input type="checkbox" id="cacheToggle">
+      <label class="cache-toggle-label" for="cacheToggle">Recurring System Prompt &mdash; <strong>cache-eligible</strong> (up to 90% savings on repeated calls)</label>
     </div>
 
     <div class="field">
@@ -533,10 +850,22 @@
 
     <div class="error-box" id="errorBox"></div>
 
+
   </div>
 
   <!-- RIGHT: results -->
   <div class="panel-right">
+
+    <!-- Suggestion Box -->
+    <div class="suggestion-box" id="suggestionBox">
+      <div class="suggestion-icon">💡</div>
+      <div class="suggestion-content">
+        <div class="suggestion-title">Optimized Alternative Found</div>
+        <div class="suggestion-text" id="suggestionText"></div>
+      </div>
+      <button class="suggestion-action" id="applySuggestionBtn" onclick="applySuggestion()">Switch</button>
+    </div>
+
 
     <div id="emptyState" class="empty-state">
       <div class="icon">⬡</div>
@@ -547,11 +876,15 @@
 
       <!-- token counts -->
       <div>
-        <div class="section-title">Token Breakdown</div>
+        <div class="section-title" style="display:flex;justify-content:space-between;align-items:center;">Token Breakdown<span class="tokenizer-badge" id="r-tokenizer">cl100k_base</span></div>
         <div class="stats-grid">
           <div class="stat-row">
             <span class="stat-label">Input tokens (actual)</span>
             <span class="stat-val accent" id="r-input">—</span>
+          </div>
+          <div class="stat-row" id="r-image-row" style="display:none">
+            <span class="stat-label">Image tokens (included)</span>
+            <span class="stat-val" id="r-image">—</span>
           </div>
           <div class="stat-row">
             <span class="stat-label">Max output tokens (budget)</span>
@@ -593,6 +926,9 @@
           </div>
         </div>
       </div>
+
+      <!-- cache savings -->
+      <div id="cacheSavings"></div>
 
       <!-- scale estimator -->
       <div>
@@ -639,317 +975,451 @@
       <svg class="gh-icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
       Star on GitHub
     </a>
-    <a id="docsLink" href="docs/" target="_blank">API Docs ↗</a>
-  </div>
-</footer>
-
-<script>
+    <a id="docsLink" href="docs/" target="_blank">API Docs ↗</a
   // provider configuration
   const PROVIDERS = {
     anthropic: {
       name: 'Anthropic',
+      cacheRates: { writeMultiplier: 1.25, readMultiplier: 0.10 },
       models: {
-        'claude-haiku-4-5': { input: 1.00, output: 5.00, ctx: 200000, label: 'Haiku 4.5' },
-        'claude-sonnet-4-6': { input: 3.00, output: 15.00, ctx: 200000, label: 'Sonnet 4.6' },
-        'claude-opus-4-6': { input: 5.00, output: 25.00, ctx: 200000, label: 'Opus 4.6' },
+        'claude-haiku-4-5': { input: 1.00, output: 5.00, ctx: 200000, label: 'Haiku 4.5', tier: 'low', tokenizer: 'BPE (est.)' },
+        'claude-sonnet-4-6': { input: 3.00, output: 15.00, ctx: 200000, label: 'Sonnet 4.6', tier: 'mid', tokenizer: 'BPE (est.)' },
+        'claude-opus-4-6': { input: 5.00, output: 25.00, ctx: 200000, label: 'Opus 4.6', tier: 'high', tokenizer: 'BPE (est.)' },
       }
     },
     openai: {
       name: 'OpenAI',
       models: {
-        'gpt-5.4':      { input: 2.50, output: 15.00, ctx: 512000, label: 'GPT-5.4' },
-        'gpt-5.4-mini': { input: 0.75, output: 4.50,  ctx: 512000, label: 'GPT-5.4 mini' },
-        'gpt-5.4-nano': { input: 0.20, output: 1.25,  ctx: 128000, label: 'GPT-5.4 nano' },
+        'gpt-5.4':      { input: 2.50, output: 15.00, ctx: 512000, label: 'GPT-5.4', tier: 'high', tokenizer: 'o200k_base' },
+        'gpt-5.4-mini': { input: 0.75, output: 4.50,  ctx: 512000, label: 'GPT-5.4 mini', tier: 'mid', tokenizer: 'o200k_base' },
+        'gpt-5.4-nano': { input: 0.20, output: 1.25,  ctx: 128000, label: 'GPT-5.4 nano', tier: 'low', tokenizer: 'o200k_base' },
       }
     },
     google: {
       name: 'Google Gemini',
       models: {
-        'gemini-2.5-pro':   { input: 3.50, output: 10.50, ctx: 2000000, label: 'Gemini 2.5 Pro' },
-        'gemini-2.5-flash': { input: 0.10, output: 0.40,  ctx: 1000000, label: 'Gemini 2.5 Flash' },
+        'gemini-2.5-pro':   { input: 3.50, output: 10.50, ctx: 2000000, label: 'Gemini 2.5 Pro', tier: 'high', tokenizer: 'SentencePiece (est.)' },
+        'gemini-2.5-flash': { input: 0.10, output: 0.40,  ctx: 1000000, label: 'Gemini 2.5 Flash', tier: 'low', tokenizer: 'SentencePiece (est.)' },
       }
     },
-    openrouter: {
-      name: 'OpenRouter',
+    deepseek: {
+      name: 'DeepSeek',
+      cacheRates: { writeMultiplier: 1.00, readMultiplier: 0.10 },
       models: {
-        'llama-4.1-405b': { input: 2.00, output: 10.00, ctx: 128000, label: 'Llama 4.1 405B' },
-        'qwen-3-72b':     { input: 0.80, output: 0.80,  ctx: 128000, label: 'Qwen 3.0 72B' },
-      }
-    },
-    bedrock: {
-      name: 'AWS Bedrock',
-      models: {
-        'claude-3-7-sonnet': { input: 3.00, output: 15.00, ctx: 200000, label: 'Claude 3.7 Sonnet' },
-        'llama-4-70b-br':    { input: 0.70, output: 0.70,  ctx: 128000, label: 'Llama 4.0 70B' },
-      }
-    },
-    vertex: {
-      name: 'Vertex AI',
-      models: {
-        'gemini-2-5-pro':   { input: 1.25, output: 5.00, ctx: 2000000, label: 'Gemini 2.5 Pro' },
-        'gemini-2-5-flash': { input: 0.10, output: 0.40, ctx: 1000000, label: 'Gemini 2.5 Flash' },
-      }
-    },
-    perplexity: {
-      name: 'Perplexity',
-      models: {
-        'sonar-pro':  { input: 3.00, output: 12.00, ctx: 128000, label: 'Sonar Pro' },
-        'sonar-base': { input: 0.60, output: 1.80,  ctx: 128000, label: 'Sonar Base' },
-      }
-    },
-    groq: {
-      name: 'Groq',
-      models: {
-        'llama-4-405b': { input: 2.00, output: 2.00, ctx: 128000, label: 'Llama 4 405B' },
-        'llama-4-70b':  { input: 0.70, output: 0.70, ctx: 128000, label: 'Llama 4 70B' },
-      }
-    },
-    fireworks: {
-      name: 'Fireworks AI',
-      models: {
-        'llama-4-70b-fw': { input: 0.50, output: 1.00, ctx: 128000, label: 'Llama 4.0 70B' },
-        'qwen-2-5-fw':    { input: 0.20, output: 0.20, ctx: 128000, label: 'Qwen 2.5' },
-      }
-    },
-    cerebras: {
-      name: 'Cerebras',
-      models: {
-        'llama-3-1-70b-fast': { input: 0.60, output: 0.60, ctx: 128000, label: 'Llama 3.1 70B' },
-        'llama-3-1-8b-fast':  { input: 0.10, output: 0.10, ctx: 128000, label: 'Llama 3.1 8B' },
-      }
-    },
-    together: {
-      name: 'Together AI',
-      models: {
-        'dolphin-3-0': { input: 0.80, output: 0.80, ctx: 128000, label: 'Dolphin 3.0' },
-        'qwen-3-72b-tg': { input: 0.80, output: 0.80, ctx: 128000, label: 'Qwen 3.0 72B' },
+        'deepseek-reasoner': { input: 0.28, output: 0.42, ctx: 128000, label: 'DeepSeek Reasoning', tier: 'low', tokenizer: 'BPE (est.)' },
+        'deepseek-chat':     { input: 0.14, output: 0.28, ctx: 128000, label: 'DeepSeek Chat', tier: 'low', tokenizer: 'BPE (est.)' },
       }
     },
     mistral: {
       name: 'Mistral',
       models: {
-        'mistral-large-3': { input: 2.00, output: 6.00, ctx: 128000, label: 'Mistral Large 3' },
-        'mistral-small-3': { input: 0.20, output: 0.60, ctx: 128000, label: 'Mistral Small 3' },
+        'mistral-large-3': { input: 2.00, output: 6.00, ctx: 128000, label: 'Mistral Large 3', tier: 'high', tokenizer: 'BPE (est.)' },
+        'mistral-small-3': { input: 0.20, output: 0.60, ctx: 128000, label: 'Mistral Small 3', tier: 'low', tokenizer: 'BPE (est.)' },
       }
     },
     xai: {
       name: 'xAI (Grok)',
       models: {
-        'grok-4.20':     { input: 2.00, output: 6.00,  ctx: 2048000, label: 'Grok 4.20' },
-        'grok-4':        { input: 3.00, output: 15.00, ctx: 2048000, label: 'Grok 4' },
+        'grok-4.20':     { input: 2.00, output: 6.00,  ctx: 2048000, label: 'Grok 4.20', tier: 'high', tokenizer: 'BPE (est.)' },
+        'grok-4':        { input: 3.00, output: 15.00, ctx: 2048000, label: 'Grok 4', tier: 'high', tokenizer: 'BPE (est.)' },
       }
     },
-    deepseek: {
-      name: 'DeepSeek',
+    groq: {
+      name: 'Groq',
       models: {
-        'deepseek-reasoner': { input: 0.28, output: 0.42, ctx: 128000, label: 'DeepSeek Reasoning' },
-        'deepseek-chat':     { input: 0.14, output: 0.28, ctx: 128000, label: 'DeepSeek Chat' },
+        'llama-4-405b': { input: 2.00, output: 2.00, ctx: 128000, label: 'Llama 4 405B', tier: 'high', tokenizer: 'BPE (est.)' },
+        'llama-4-70b':  { input: 0.70, output: 0.70, ctx: 128000, label: 'Llama 4 70B', tier: 'mid', tokenizer: 'BPE (est.)' },
       }
     },
-    cohere: {
-      name: 'Cohere',
+    openrouter: {
+      name: 'OpenRouter',
       models: {
-        'command-r7': { input: 1.00, output: 4.00, ctx: 128000, label: 'Command R7' },
-        'command-r':  { input: 0.50, output: 1.50, ctx: 128000, label: 'Command R' },
+        'llama-4.1-405b': { input: 2.00, output: 10.00, ctx: 128000, label: 'Llama 4.1 405B', tier: 'high', tokenizer: 'BPE (est.)' },
+        'qwen-3-72b':     { input: 0.80, output: 0.80,  ctx: 128000, label: 'Qwen 3.0 72B', tier: 'mid', tokenizer: 'BPE (est.)' },
       }
     },
-    dashscope: {
-      name: 'Alibaba DashScope',
+    perplexity: {
+      name: 'Perplexity',
       models: {
-        'qwen-max-3':  { input: 1.20, output: 4.00, ctx: 128000, label: 'Qwen Max 3' },
-        'qwen-plus-3': { input: 0.20, output: 0.60, ctx: 128000, label: 'Qwen Plus 3' },
-      }
-    },
-    reka: {
-      name: 'Reka AI',
-      models: {
-        'reka-core':  { input: 3.00, output: 15.00, ctx: 128000, label: 'Reka Core' },
-        'reka-flash': { input: 0.30, output: 0.90,  ctx: 128000, label: 'Reka Flash' },
-      }
-    },
-    upstage: {
-      name: 'Upstage',
-      models: {
-        'solar-pro-v2': { input: 1.00, output: 4.00, ctx: 128000, label: 'Solar Pro v2' },
-      }
-    },
-    lambda: {
-      name: 'Lambda Labs',
-      models: {
-        'hermes-3-70b': { input: 0.50, output: 0.50, ctx: 128000, label: 'Hermes 3 70B' },
-        'llama-4-70b-ll': { input: 0.50, output: 0.50, ctx: 128000, label: 'Llama 4.0 70B' },
-      }
-    },
-    nvidia: {
-      name: 'NVIDIA',
-      models: {
-        'nemotron-4-340b': { input: 1.20, output: 4.80, ctx: 128000, label: 'Nemotron 4 340B' },
-        'nvlm-1.0':        { input: 0.90, output: 0.90, ctx: 128000, label: 'NVLM 1.0' },
-      }
-    },
-    meta: {
-      name: 'Meta (Llama)',
-      models: {
-        'llama-4-405b': { input: 2.00, output: 2.00, ctx: 128000, label: 'Llama 4 405B' },
-        'llama-4-70b':  { input: 0.70, output: 0.70, ctx: 128000, label: 'Llama 4 70B' },
+        'sonar-pro':  { input: 3.00, output: 12.00, ctx: 128000, label: 'Sonar Pro', tier: 'high', tokenizer: 'BPE (est.)' },
+        'sonar-base': { input: 0.60, output: 1.80,  ctx: 128000, label: 'Sonar Base', tier: 'low', tokenizer: 'BPE (est.)' },
       }
     }
   };
+
+
+  let currentMode = 'single';
+  let currentSuggestion = null;
+  let currentRes = 'low';
+
+  // Image token costs per resolution tier (OpenAI-style baseline estimates)
+  const IMAGE_TOKENS = { low: 85, high: 1706 };
+
+  function setRes(res) {
+    currentRes = res;
+    document.getElementById('resLow').classList.toggle('active', res === 'low');
+    document.getElementById('resHigh').classList.toggle('active', res === 'high');
+  }
+
+  function showCacheToggle() {
+    const pKey = document.getElementById('provider').value;
+    const row = document.getElementById('cacheToggleRow');
+    if (!row) return;
+    const hasCacheRates = PROVIDERS[pKey] && PROVIDERS[pKey].cacheRates;
+    row.classList.toggle('visible', !!hasCacheRates);
+    if (!hasCacheRates) {
+      document.getElementById('cacheToggle').checked = false;
+    }
+  }
+
+  function renderCacheSavings(inputTokens, maxToks, pKey, mId) {
+    const el = document.getElementById('cacheSavings');
+    if (!el) return;
+
+    const cacheChecked = document.getElementById('cacheToggle') && document.getElementById('cacheToggle').checked;
+    const provider = PROVIDERS[pKey];
+
+    if (!cacheChecked || !provider || !provider.cacheRates) {
+      el.classList.remove('visible');
+      return;
+    }
+
+    const model = provider.models[mId];
+    const rates = provider.cacheRates;
+
+    const regularInputCost = (inputTokens / 1000000) * model.input;
+    const cacheWriteCost   = (inputTokens / 1000000) * model.input * rates.writeMultiplier;
+    const cacheReadCost    = (inputTokens / 1000000) * model.input * rates.readMultiplier;
+    const outputCost       = (maxToks / 1000000) * model.output;
+
+    const regularTotal   = regularInputCost + outputCost;
+    const cacheWriteTotal = cacheWriteCost + outputCost;
+    const cacheReadTotal  = cacheReadCost + outputCost;
+
+    const savingsPerCall = regularInputCost - cacheReadCost;
+    const writeOverhead  = cacheWriteCost - regularInputCost;
+    const breakEvenCalls = (writeOverhead > 0 && savingsPerCall > 0)
+      ? Math.ceil(writeOverhead / savingsPerCall) + 1
+      : 1;
+    const savingsPct = regularInputCost > 0
+      ? ((savingsPerCall / regularInputCost) * 100).toFixed(0)
+      : 0;
+
+    el.classList.add('visible');
+    el.innerHTML = `
+      <div class="section-title">Prompt Cache Savings</div>
+      <div class="cache-block">
+        <div class="cache-row">
+          <span class="label">Without caching (per call)</span>
+          <span class="val">${fmt(regularTotal)}</span>
+        </div>
+        <div class="cache-row">
+          <span class="label">Cache write — 1st call</span>
+          <span class="val">${fmt(cacheWriteTotal)}</span>
+        </div>
+        <div class="cache-row highlight">
+          <span class="label">Cache read — subsequent calls</span>
+          <span class="val">${fmt(cacheReadTotal)}</span>
+        </div>
+        <div class="cache-row">
+          <span class="label">Input savings per cached call</span>
+          <span class="val" style="color:var(--green)">${fmt(savingsPerCall)} (${savingsPct}%)</span>
+        </div>
+      </div>
+      <div class="cache-note">Write rate: ${(rates.writeMultiplier * 100).toFixed(0)}% of standard input price. Read rate: ${(rates.readMultiplier * 100).toFixed(0)}%. Break-even at call ${breakEvenCalls}.</div>
+    `;
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    document.body.classList.toggle('duel-mode-active', mode === 'duel');
+    document.getElementById('singleModeBtn').classList.toggle('active', mode === 'single');
+    document.getElementById('duelModeBtn').classList.toggle('active', mode === 'duel');
+    
+    // Clear results and suggestions when switching
+    document.getElementById('results').innerHTML = '';
+    document.getElementById('results').classList.remove('visible');
+    document.getElementById('emptyState').style.display = 'flex';
+    document.getElementById('suggestionBox').classList.remove('visible');
+    
+    if (mode === 'single') {
+      restoreSingleResultsHTML();
+    }
+  }
+
+  function restoreSingleResultsHTML() {
+    document.getElementById('results').innerHTML = `
+      <div>
+        <div class="section-title" style="display:flex;justify-content:space-between;align-items:center;">Token Breakdown<span class="tokenizer-badge" id="r-tokenizer">cl100k_base</span></div>
+        <div class="stats-grid">
+          <div class="stat-row"><span class="stat-label">Input tokens (actual)</span><span class="stat-val accent" id="r-input">—</span></div>
+          <div class="stat-row" id="r-image-row" style="display:none"><span class="stat-label">Image tokens (included)</span><span class="stat-val" id="r-image">—</span></div>
+          <div class="stat-row"><span class="stat-label">Max output tokens (budget)</span><span class="stat-val" id="r-output">—</span></div>
+          <div class="stat-row"><span class="stat-label">Total token budget</span><span class="stat-val" id="r-total">—</span></div>
+          <div class="stat-row"><span class="stat-label">Context window</span><span class="stat-val" id="r-ctx">—</span></div>
+          <div class="stat-row"><span class="stat-label">Remaining headroom</span><span class="stat-val" id="r-headroom">—</span></div>
+        </div>
+      </div>
+      <div class="warning" id="warningBox"></div>
+      <div>
+        <div class="section-title">Cost Per Call</div>
+        <div class="cost-block">
+          <div class="cost-row"><span class="label">Input cost</span><span class="val" id="c-input">—</span></div>
+          <div class="cost-row"><span class="label">Est. output cost</span><span class="val" id="c-output">—</span></div>
+          <div class="cost-row total"><span class="label">Total per call</span><span class="val" id="c-total">—</span></div>
+        </div>
+      </div>
+      <div id="cacheSavings"></div>
+      <div>
+        <div class="section-title">Scale Estimator (monthly)</div>
+        <div class="scale-grid">
+          <div class="scale-cell"><div class="calls">1K calls</div><div class="cost" id="s-1k">—</div></div>
+          <div class="scale-cell"><div class="calls">10K calls</div><div class="cost" id="s-10k">—</div></div>
+          <div class="scale-cell"><div class="calls">100K calls</div><div class="cost" id="s-100k">—</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-title">Context Efficiency</div>
+        <div class="eff-wrap">
+          <div class="eff-header"><span class="eff-label">Context window used</span><span class="eff-pct" id="eff-pct">—%</span></div>
+          <div class="bar-track"><div class="bar-fill" id="eff-bar" style="width:0%"></div></div>
+          <div class="eff-note" id="eff-note">—</div>
+        </div>
+      </div>
+    `;
+  }
 
   function updateModels() {
     const providerKey = document.getElementById('provider').value;
     const provider = PROVIDERS[providerKey];
     const modelSelect = document.getElementById('model');
-
-    // update dropdown
     modelSelect.innerHTML = '';
-    for (const [id, m] of Object.entries(provider.models)) {
+    if (provider) {
+      for (const [id, m] of Object.entries(provider.models)) {
+        const opt = document.createElement('option');
+        opt.value = id;
+        opt.textContent = `${m.label} — $${m.input}/$${m.output}`;
+        modelSelect.appendChild(opt);
+      }
+    }
+    showCacheToggle();
+  }
+
+  function updateDuelModels(slot) {
+    const pKey = document.getElementById(`p${slot}`).value;
+    const mSelect = document.getElementById(`m${slot}`);
+    mSelect.innerHTML = '';
+    for (const [id, m] of Object.entries(PROVIDERS[pKey].models)) {
       const opt = document.createElement('option');
       opt.value = id;
-      opt.textContent = `${m.label} — $${m.input}/$${m.output}`;
-      modelSelect.appendChild(opt);
+      opt.textContent = m.label;
+      mSelect.appendChild(opt);
     }
   }
 
-  // initialize
-  updateModels();
-
-  // updateDocsLink initialized by updateModels on load
-
-
-  function fmt(n, decimals = 6) {
-    if (n < 0.000001) return '$0.000000';
-    return '$' + n.toFixed(decimals);
+  function initDuelSelectors() {
+    for (let i = 1; i <= 3; i++) {
+        const pSelect = document.getElementById(`p${i}`);
+        pSelect.innerHTML = '';
+        for (const [key, p] of Object.entries(PROVIDERS)) {
+            const opt = document.createElement('option');
+            opt.value = key;
+            opt.textContent = p.name;
+            pSelect.appendChild(opt);
+        }
+        // Set defaults
+        if (i === 1) pSelect.value = 'openai';
+        if (i === 2) pSelect.value = 'anthropic';
+        if (i === 3) pSelect.value = 'google';
+        updateDuelModels(i);
+    }
   }
 
-  function fmtScale(n) {
-    if (n >= 1000) return '$' + (n / 1000).toFixed(1) + 'K';
-    if (n >= 1) return '$' + n.toFixed(2);
-    return '$' + n.toFixed(4);
+  function applySuggestion() {
+    if (!currentSuggestion) return;
+    document.getElementById('provider').value = currentSuggestion.provider;
+    updateModels();
+    document.getElementById('model').value = currentSuggestion.model;
+    document.getElementById('suggestionBox').classList.remove('visible');
+    validate();
   }
 
-  function fmtNum(n) {
-    return n.toLocaleString();
-  }
+  function findCheaperAlternative(inputTokens, maxTokens, currentP, currentM) {
+    const currentPrice = (inputTokens/1M * PROVIDERS[currentP].models[currentM].input) + (maxTokens/1M * PROVIDERS[currentP].models[currentM].output);
+    const totalTokens = inputTokens + maxTokens;
+    let bestAlt = null;
+    let maxSavings = 0;
 
-  function showError(msg) {
-    const el = document.getElementById('errorBox');
-    el.textContent = msg;
-    el.classList.add('visible');
-  }
-
-  function clearError() {
-    document.getElementById('errorBox').classList.remove('visible');
+    for (const [pKey, p] of Object.entries(PROVIDERS)) {
+        for (const [mId, m] of Object.entries(p.models)) {
+            if (pKey === currentP && mId === currentM) continue;
+            if (m.ctx < totalTokens) continue;
+            
+            const altPrice = (inputTokens/1M * m.input) + (maxTokens/1M * m.output);
+            if (altPrice < currentPrice) {
+                const savings = (currentPrice - altPrice) / currentPrice;
+                if (savings > maxSavings && savings > 0.3) { // Only suggest if > 30% savings
+                    maxSavings = savings;
+                    bestAlt = { provider: pKey, model: mId, savings: (savings*100).toFixed(0), label: m.label };
+                }
+            }
+        }
+    }
+    return bestAlt;
   }
 
   async function validate() {
     clearError();
-
-    const providerKey = document.getElementById('provider').value;
-    const apiKey      = document.getElementById('apiKey').value.trim();
-    const modelId     = document.getElementById('model').value;
-    const prompt      = document.getElementById('prompt').value.trim();
-    const maxToks     = parseInt(document.getElementById('maxTokens').value) || 1000;
-
-    // validation
-    // API key check removed as per user request
+    const prompt = document.getElementById('prompt').value.trim();
     if (!prompt) return showError('Prompt cannot be empty.');
-
+    
+    const maxToks = parseInt(document.getElementById('maxTokens').value) || 1000;
     const btn = document.getElementById('validateBtn');
+    
     btn.disabled = true;
-    btn.textContent = 'Validating...';
     btn.classList.add('loading');
 
-    document.getElementById('emptyState').style.display = 'none';
-    document.getElementById('results').classList.remove('visible');
-
     try {
-      let inputTokens = 0;
-
-      // All providers now use local tokenization for a key-free experience
       const tokenizer = window.GPTTokenizer || window.GPTTokenizer_cl100k_base;
-      if (!tokenizer) {
-        throw new Error('Tokenization library not loaded. Please check your internet connection.');
-      }
       const tokens = tokenizer.encode(prompt);
-      inputTokens = tokens.length;
+      const imageCount  = parseInt(document.getElementById('imageCount').value) || 0;
+      const imageTokens = imageCount * IMAGE_TOKENS[currentRes];
+      const inputTokens = tokens.length + imageTokens;
 
-      renderResults(inputTokens, maxToks, providerKey, modelId);
+      document.getElementById('emptyState').style.display = 'none';
+      document.getElementById('results').classList.add('visible');
 
+      if (currentMode === 'single') {
+        const pKey = document.getElementById('provider').value;
+        const mId = document.getElementById('model').value;
+        renderSingle(inputTokens, maxToks, pKey, mId, imageTokens);
+        
+        const alt = findCheaperAlternative(inputTokens, maxToks, pKey, mId);
+        if (alt) {
+            currentSuggestion = alt;
+            document.getElementById('suggestionText').innerHTML = `Switching to <strong>${alt.label}</strong> could save you <strong>${alt.savings}%</strong> on this request while fitting comfortably in the context window.`;
+            document.getElementById('suggestionBox').classList.add('visible');
+        } else {
+            document.getElementById('suggestionBox').classList.remove('visible');
+        }
+      } else {
+        document.getElementById('results').innerHTML = ''; // Clear for cards
+        for (let i = 1; i <= 3; i++) {
+            const pKey = document.getElementById(`p${i}`).value;
+            const mId = document.getElementById(`m${i}`).value;
+            renderDuelCard(inputTokens, maxToks, pKey, mId, i);
+        }
+      }
     } catch (err) {
       showError(err.message);
     } finally {
       btn.disabled = false;
-      btn.textContent = 'Validate Prompt';
       btn.classList.remove('loading');
     }
   }
 
-  function renderResults(inputTokens, maxToks, providerKey, modelId) {
-    const p = PROVIDERS[providerKey].models[modelId];
-    const ctx = p.ctx;
+  function renderSingle(inputTokens, maxToks, pKey, mId, imageTokens) {
+    imageTokens = imageTokens || 0;
+    const p = PROVIDERS[pKey].models[mId];
+    const total = inputTokens + maxToks;
+    const inputCost = (inputTokens / 1000000) * p.input;
+    const outputCost = (maxToks / 1000000) * p.output;
+    const totalCost = inputCost + outputCost;
 
-    const totalBudget = inputTokens + maxToks;
-    const headroom = ctx - totalBudget;
-    const effPct = Math.min(100, (totalBudget / ctx) * 100);
+    document.getElementById('r-input').textContent = fmtNum(inputTokens);
 
-    // costs
-    const inputCost  = (inputTokens / 1_000_000) * p.input;
-    const outputCost = (maxToks     / 1_000_000) * p.output;
-    const totalCost  = inputCost + outputCost;
+    // Image tokens row
+    const imageRow = document.getElementById('r-image-row');
+    const imageValEl = document.getElementById('r-image');
+    if (imageRow) {
+      if (imageTokens > 0) {
+        imageRow.style.display = '';
+        if (imageValEl) imageValEl.textContent = fmtNum(imageTokens) + ' (' + (currentRes === 'high' ? 'high res' : 'low res') + ')';
+      } else {
+        imageRow.style.display = 'none';
+      }
+    }
 
-    // populate
-    document.getElementById('r-input').textContent     = fmtNum(inputTokens);
-    document.getElementById('r-output').textContent    = fmtNum(maxToks);
-    document.getElementById('r-total').textContent     = fmtNum(totalBudget);
-    document.getElementById('r-ctx').textContent       = fmtNum(ctx);
+    // Tokenizer badge
+    const tokBadge = document.getElementById('r-tokenizer');
+    if (tokBadge) {
+      tokBadge.textContent = p.tokenizer ? p.tokenizer : 'cl100k_base';
+    }
 
+    document.getElementById('r-output').textContent = fmtNum(maxToks);
+    document.getElementById('r-total').textContent = fmtNum(total);
+    document.getElementById('r-ctx').textContent = fmtNum(p.ctx);
+
+    const headroom = p.ctx - total;
     const headEl = document.getElementById('r-headroom');
     headEl.textContent = fmtNum(Math.max(0, headroom));
     headEl.className = 'stat-val ' + (headroom < 0 ? 'danger' : headroom < 10000 ? 'warn' : 'ok');
 
-    document.getElementById('c-input').textContent  = fmt(inputCost);
+    document.getElementById('c-input').textContent = fmt(inputCost);
     document.getElementById('c-output').textContent = fmt(outputCost);
-    document.getElementById('c-total').textContent  = fmt(totalCost, 6);
+    document.getElementById('c-total').textContent = fmt(totalCost);
 
-    document.getElementById('s-1k').textContent    = fmtScale(totalCost * 1_000);
-    document.getElementById('s-10k').textContent   = fmtScale(totalCost * 10_000);
-    document.getElementById('s-100k').textContent  = fmtScale(totalCost * 100_000);
+    document.getElementById('s-1k').textContent = fmtScale(totalCost * 1000);
+    document.getElementById('s-10k').textContent = fmtScale(totalCost * 10000);
+    document.getElementById('s-100k').textContent = fmtScale(totalCost * 100000);
 
-    // efficiency bar
-    const bar = document.getElementById('eff-bar');
-    const pctEl = document.getElementById('eff-pct');
-    const noteEl = document.getElementById('eff-note');
-    pctEl.textContent = effPct.toFixed(1) + '%';
-    bar.style.width = effPct + '%';
+    const effPct = Math.min(100, (total / p.ctx) * 100);
+    document.getElementById('eff-pct').textContent = effPct.toFixed(1) + '%';
+    document.getElementById('eff-bar').style.width = effPct + '%';
 
-    if (effPct < 20) {
-      bar.style.background = 'var(--green)';
-      noteEl.textContent = 'Prompt is lean. Good headroom for conversation history or additional context.';
-    } else if (effPct < 60) {
-      bar.style.background = 'var(--accent)';
-      noteEl.textContent = 'Healthy usage. Room available for dynamic content injection.';
-    } else if (effPct < 85) {
-      bar.style.background = 'var(--orange)';
-      noteEl.textContent = 'Getting full. Consider trimming system prompt or reducing max_tokens.';
-    } else {
-      bar.style.background = 'var(--red)';
-      noteEl.textContent = 'Near or over context limit. Reduce input size or lower max_tokens.';
-    }
-
-    // overflow warning
     const warnEl = document.getElementById('warningBox');
-    if (totalBudget > ctx) {
-      warnEl.textContent = `⚠ Total budget (${fmtNum(totalBudget)} tokens) exceeds the ${fmtNum(ctx)}-token context window. The request will fail at runtime. Reduce your system prompt, user message, or max_tokens.`;
+    if (total > p.ctx) {
+      warnEl.textContent = `Context overflow by ${fmtNum(total - p.ctx)} tokens.`;
       warnEl.classList.add('visible');
     } else {
       warnEl.classList.remove('visible');
     }
 
-    document.getElementById('results').classList.add('visible');
+    renderCacheSavings(inputTokens, maxToks, pKey, mId);
   }
 
-  // allow Enter key on single-line inputs
+  function renderDuelCard(inputTokens, maxToks, pKey, mId, index) {
+    const p = PROVIDERS[pKey].models[mId];
+    const total = inputTokens + maxToks;
+    const totalCost = (inputTokens / 1000000 * p.input) + (maxToks / 1000000 * p.output);
+    const effPct = Math.min(100, (total / p.ctx) * 100);
+
+    const card = document.createElement('div');
+    card.className = 'comp-card';
+    card.innerHTML = `
+      <div class="model-header">
+        <div class="model-name">${p.label}</div>
+        <div class="provider-name">${PROVIDERS[pKey].name}</div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-row"><span class="stat-label">Tokens</span><span class="stat-val accent">${fmtNum(total)}</span></div>
+        <div class="stat-row"><span class="stat-label">Cost/Call</span><span class="stat-val">${fmt(totalCost)}</span></div>
+        <div class="stat-row"><span class="stat-label">Scale (100k)</span><span class="stat-val">${fmtScale(totalCost * 100000)}</span></div>
+      </div>
+      <div class="eff-wrap">
+        <div class="eff-header"><span class="eff-label">Usage</span><span class="eff-pct">${effPct.toFixed(1)}%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width:${effPct}%"></div></div>
+      </div>
+    `;
+    document.getElementById('results').appendChild(card);
+  }
+
+  function fmt(n) { return '$' + n.toFixed(6); }
+  function fmtScale(n) { return '$' + (n < 10 ? n.toFixed(2) : Math.round(n).toLocaleString()); }
+  function fmtNum(n) { return n.toLocaleString(); }
+  function showError(msg) { 
+    const el = document.getElementById('errorBox');
+    el.textContent = msg;
+    el.classList.add('visible');
+  }
+  function clearError() { document.getElementById('errorBox').classList.remove('visible'); }
+
+  // Initial Setup
+  updateModels();
+  initDuelSelectors();
+  showCacheToggle();
+
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && e.ctrlKey) validate();
   });
@@ -957,3 +1427,4 @@
 
 </body>
 </html>
+
